@@ -35,6 +35,8 @@ export const FinalCta: React.FC<FinalCtaProps> = ({ onExploreAnime, onOpenSignIn
               <img
                 src={anime.posterUrl}
                 alt=""
+                loading="lazy"
+                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover filter grayscale contrast-125"
               />
             </div>

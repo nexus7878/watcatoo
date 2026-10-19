@@ -50,18 +50,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           key={current.bannerUrl}
           src={current.bannerUrl}
           alt={current.title}
-          className="w-full h-full object-cover object-right md:object-center transition-opacity duration-700 ease-in-out opacity-85 scale-100"
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover object-[32%_center] sm:object-[35%_center] md:object-center transition-opacity duration-700 ease-in-out opacity-40 sm:opacity-75 md:opacity-85 scale-100"
         />
+
+        {/* Mobile Fullscreen Protective Dark Mask (prevents zoomed blur behind header & text) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080A09] via-[#080A09]/75 to-[#080A09] sm:hidden z-10" />
 
         {/* Cinematic Multi-stop Overlays for maximum text readability */}
         {/* Left gradient for text protection */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#080A09] via-[#080A09]/80 md:via-[#080A09]/70 to-transparent w-full md:w-3/4 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#080A09] via-[#080A09]/90 md:via-[#080A09]/70 to-transparent w-full md:w-3/4 z-10" />
 
         {/* Bottom gradient fade into page */}
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#080A09] via-[#080A09]/80 to-transparent z-10" />
 
-        {/* Top subtle vignette */}
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#080A09]/90 to-transparent z-10" />
+        {/* Top vignette protection for header */}
+        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#080A09] via-[#080A09]/90 to-transparent z-10" />
 
         {/* Subtle radial green ambient glow */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#39E66B]/5 rounded-full blur-3xl pointer-events-none" />

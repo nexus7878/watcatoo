@@ -67,6 +67,8 @@ export const GenreSection: React.FC<GenreSectionProps> = ({
                   <img
                     src={genre.bgImage}
                     alt={genre.name}
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out opacity-45 group-hover:opacity-60"
                   />
                   {/* Gradient mask for readable text */}

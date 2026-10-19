@@ -61,14 +61,14 @@ export const Navbar: React.FC<NavbarProps> = ({
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled
-            ? 'bg-[#080A09]/92 backdrop-blur-md border-b border-[#262D28] py-3.5 shadow-lg shadow-black/40'
-            : 'bg-gradient-to-b from-[#080A09]/90 via-[#080A09]/50 to-transparent py-5'
+            ? 'bg-[#080A09]/95 backdrop-blur-md border-b border-[#262D28] py-3 shadow-lg shadow-black/50'
+            : 'bg-[#080A09]/90 sm:bg-gradient-to-b sm:from-[#080A09]/90 sm:via-[#080A09]/60 sm:to-transparent backdrop-blur-md sm:backdrop-blur-none border-b border-[#262D28]/60 sm:border-transparent py-3 sm:py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Left: Brand Wordmark & Nav */}
-            <div className="flex items-center space-x-7 lg:space-x-9">
+            <div className="flex items-center space-x-6 lg:space-x-9">
               <button
                 type="button"
                 onClick={() => handleNavClick('home')}
@@ -78,7 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <img
                   src="/watcatoo-logo.png"
                   alt="WATCatoo"
-                  className="h-7 sm:h-8 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                  className="h-6 sm:h-8 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                 />
               </button>
 
@@ -109,15 +109,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             {/* Right: Search & Actions */}
-            <div className="flex items-center space-x-2.5 sm:space-x-3">
-              {/* Seamless Unified Search Bar (Desktop) & Clean Icon Button (Mobile) */}
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              {/* Matched Search Button: sleek icon button on mobile, expandable pill on desktop */}
               <button
                 type="button"
                 onClick={onOpenSearch}
-                className="relative flex items-center justify-between h-9 sm:h-10 w-9 sm:w-56 md:w-64 lg:w-72 px-0 sm:px-3.5 bg-[#101411]/80 hover:bg-[#151A16] border border-[#262D28] hover:border-[#39E66B]/40 rounded-full transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#39E66B] justify-center sm:justify-between shadow-xs"
+                className="relative flex items-center h-9 sm:h-10 w-9 sm:w-56 md:w-64 lg:w-72 sm:px-3.5 bg-[#101411] hover:bg-[#151A16] border border-[#262D28] hover:border-[#39E66B]/40 rounded-lg sm:rounded-full transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#39E66B] justify-center sm:justify-between shadow-xs flex-shrink-0"
                 aria-label="Search anime"
               >
-                {/* Left: Search Icon (No nested box) & Placeholder */}
+                {/* Search Icon & Desktop placeholder */}
                 <div className="flex items-center space-x-2.5 min-w-0">
                   <Search className="w-4 h-4 text-[#A0AAA2] group-hover:text-[#39E66B] transition-colors flex-shrink-0" />
                   <span className="hidden sm:inline-block text-xs font-normal text-[#A0AAA2] group-hover:text-[#F5F7F5] truncate transition-colors text-left">
@@ -133,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
               </button>
 
-              {/* Sign In Button */}
+              {/* Sign In Button (Desktop) */}
               <button
                 type="button"
                 onClick={onOpenSignIn}
@@ -143,15 +143,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span>Sign In</span>
               </button>
 
-              {/* Mobile menu toggle */}
+              {/* Mobile menu toggle: perfectly matched in height, width, border radius & styling */}
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 text-[#A0AAA2] hover:text-[#F5F7F5] bg-[#101411] border border-[#262D28] rounded-md transition-colors"
+                className="md:hidden flex items-center justify-center h-9 w-9 text-[#A0AAA2] hover:text-[#F5F7F5] bg-[#101411] hover:bg-[#151A16] border border-[#262D28] hover:border-[#39E66B]/40 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#39E66B] flex-shrink-0"
                 aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
                 aria-expanded={mobileMenuOpen}
               >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {mobileMenuOpen ? <X className="w-4 h-4 text-[#39E66B]" /> : <Menu className="w-4 h-4" />}
               </button>
             </div>
           </div>

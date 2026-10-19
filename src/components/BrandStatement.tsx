@@ -90,6 +90,8 @@ export const BrandStatement: React.FC = () => {
                   <img
                     src={pillar.bgArtwork}
                     alt=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center filter grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#101411] via-[#101411]/90 to-[#101411]/60" />

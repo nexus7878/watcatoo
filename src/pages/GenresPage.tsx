@@ -86,6 +86,8 @@ export const GenresPage: React.FC<GenresPageProps> = ({
               <img
                 src={activeGenreMeta.bgImage}
                 alt=""
+                loading="lazy"
+                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover filter blur-xs"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#101411] via-[#101411]/85 to-transparent" />

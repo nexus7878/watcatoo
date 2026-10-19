@@ -49,6 +49,7 @@ export const AnimeImage: React.FC<AnimeImageProps> = ({
           src={src}
           alt={alt}
           loading="lazy"
+          referrerPolicy="no-referrer"
           onLoad={() => setLoaded(true)}
           onError={() => setError(true)}
           className={`w-full h-full object-cover transition-all duration-500 ${
