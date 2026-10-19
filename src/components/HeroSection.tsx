@@ -43,29 +43,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const current = heroList[activeHeroIdx];
 
   return (
-    <section className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-start overflow-hidden pt-20 pb-16 bg-[#080A09]">
-      {/* Background Image Artwork Container */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+    <section className="relative min-h-screen flex items-center justify-start overflow-hidden pt-16 sm:pt-20 pb-12 sm:pb-16 bg-[#080A09]">
+      {/* Desktop Background Image Artwork Container (Hidden on small mobile to avoid zoom blur) */}
+      <div className="hidden md:block absolute inset-0 z-0 pointer-events-none">
         <img
           key={current.bannerUrl}
           src={current.bannerUrl}
           alt={current.title}
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-[32%_center] sm:object-[35%_center] md:object-center transition-opacity duration-700 ease-in-out opacity-40 sm:opacity-75 md:opacity-85 scale-100"
+          className="w-full h-full object-cover object-[35%_center] lg:object-center transition-opacity duration-700 ease-in-out opacity-80 scale-100"
         />
-
-        {/* Mobile Fullscreen Protective Dark Mask (prevents zoomed blur behind header & text) */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080A09] via-[#080A09]/75 to-[#080A09] sm:hidden z-10" />
 
         {/* Cinematic Multi-stop Overlays for maximum text readability */}
         {/* Left gradient for text protection */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#080A09] via-[#080A09]/90 md:via-[#080A09]/70 to-transparent w-full md:w-3/4 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#080A09] via-[#080A09]/90 to-transparent w-3/4 z-10" />
 
         {/* Bottom gradient fade into page */}
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#080A09] via-[#080A09]/80 to-transparent z-10" />
 
         {/* Top vignette protection for header */}
-        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#080A09] via-[#080A09]/90 to-transparent z-10" />
+        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#080A09]/90 to-transparent z-10" />
 
         {/* Subtle radial green ambient glow */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#39E66B]/5 rounded-full blur-3xl pointer-events-none" />
@@ -73,7 +70,33 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
       {/* Main Content Area */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="max-w-2xl lg:max-w-3xl space-y-6">
+        {/* Mobile Banner Visual Showcase (< md) - Fits screen cleanly without cropping characters */}
+        <div className="relative w-full aspect-[16/10] xs:aspect-[16/9] -mx-4 xs:mx-0 rounded-none xs:rounded-2xl overflow-hidden mb-6 md:hidden border-b xs:border border-[#262D28] shadow-2xl bg-[#101411]">
+          <img
+            key={current.bannerUrl}
+            src={current.bannerUrl}
+            alt={current.title}
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover object-[32%_center] xs:object-center transition-all duration-500"
+          />
+          {/* Subtle gradient fades */}
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#080A09] via-[#080A09]/70 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#080A09]/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#080A09]/30 via-transparent to-[#080A09]/30" />
+
+          {/* Floating Mobile Pill Badge on Image */}
+          <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#080A09]/85 border border-[#39E66B]/40 text-[#39E66B] text-[11px] font-bold uppercase tracking-wider backdrop-blur-xs shadow-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#39E66B] animate-pulse" />
+              <span className="truncate max-w-[200px]">{current.title}</span>
+            </div>
+            <span className="px-2 py-0.5 rounded bg-[#101411]/90 border border-[#262D28] text-[#F5F7F5] text-[10px] font-bold uppercase tracking-wider backdrop-blur-xs">
+              {current.quality || '4K UHD'}
+            </span>
+          </div>
+        </div>
+
+        <div className="max-w-2xl lg:max-w-3xl space-y-5 sm:space-y-6">
           {/* Featured Content Pill */}
           <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-[#101411]/90 border border-[#262D28] text-xs font-medium text-[#A0AAA2] backdrop-blur-sm">
             <span className="w-2 h-2 rounded-full bg-[#39E66B] animate-pulse" />
@@ -85,7 +108,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
           {/* Headline - Primary focus */}
-          <div className="space-y-3">
+          <div className="space-y-2.5 sm:space-y-3">
             <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-[#F5F7F5] leading-[1.1] font-sans">
               Your Next Anime <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5F7F5] via-[#F5F7F5] to-[#39E66B]">
