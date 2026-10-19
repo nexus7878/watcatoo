@@ -101,7 +101,7 @@ export const TrendingSection: React.FC<TrendingSectionProps> = ({
         ) : (
           <div
             ref={scrollContainerRef}
-            className="flex space-x-4 sm:space-x-5 overflow-x-auto pb-4 pt-2 scrollbar-none snap-x snap-mandatory"
+            className="flex space-x-3.5 sm:space-x-5 overflow-x-auto pb-4 pt-2 scrollbar-none snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             tabIndex={0}
             aria-label="Trending anime list"
@@ -119,7 +119,7 @@ export const TrendingSection: React.FC<TrendingSectionProps> = ({
                 tabIndex={0}
                 role="button"
                 aria-label={`View details for ${anime.title}`}
-                className="group flex-shrink-0 w-44 sm:w-52 md:w-56 lg:w-60 snap-start cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#39E66B] rounded-lg transition-transform duration-200"
+                className="group flex-shrink-0 w-36 xs:w-44 sm:w-52 md:w-56 lg:w-60 snap-start cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#39E66B] rounded-lg transition-transform duration-200"
               >
                 {/* Poster Container */}
                 <div className="relative aspect-[2/3] w-full rounded-lg overflow-hidden bg-[#151A16] border border-[#262D28] group-hover:border-[#39E66B]/50 transition-all duration-300 shadow-md group-hover:shadow-lg group-hover:shadow-[#39E66B]/5">

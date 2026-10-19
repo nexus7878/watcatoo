@@ -51,11 +51,11 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-8 sm:pt-20 px-3 sm:px-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl bg-[#101411] border border-[#262D28] rounded-xl shadow-2xl overflow-hidden"
+        className="relative w-full max-w-2xl max-h-[85vh] flex flex-col bg-[#101411] border border-[#262D28] rounded-xl shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
@@ -150,7 +150,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 </div>
 
                 <div className="flex items-center space-x-2 pl-3">
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity text-xs font-medium text-[#39E66B] flex items-center gap-1">
+                  <span className="opacity-90 sm:opacity-0 group-hover:opacity-100 transition-opacity text-xs font-medium text-[#39E66B] flex items-center gap-1">
                     <span>View</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>

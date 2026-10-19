@@ -31,18 +31,18 @@ export const AnimeDetailModal: React.FC<AnimeDetailModalProps> = ({ anime, onClo
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl bg-[#101411] border border-[#262D28] rounded-2xl shadow-2xl overflow-hidden"
+        className="relative w-full max-w-2xl max-h-[92vh] overflow-y-auto bg-[#101411] border border-[#262D28] rounded-2xl shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-[#080A09]/80 text-[#A0AAA2] hover:text-[#F5F7F5] hover:bg-[#151A16] border border-[#262D28] transition-colors"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 p-2 rounded-full bg-[#080A09]/80 text-[#A0AAA2] hover:text-[#F5F7F5] hover:bg-[#151A16] border border-[#262D28] transition-colors"
           aria-label="Close details"
         >
           <X className="w-5 h-5" />
@@ -51,18 +51,18 @@ export const AnimeDetailModal: React.FC<AnimeDetailModalProps> = ({ anime, onClo
         {/* Content Container */}
         <div className="flex flex-col sm:flex-row">
           {/* Poster Image */}
-          <div className="sm:w-5/12 flex-shrink-0 bg-[#080A09] relative">
+          <div className="h-48 xs:h-56 sm:h-auto sm:w-5/12 flex-shrink-0 bg-[#080A09] relative overflow-hidden">
             <AnimeImage
               src={anime.posterUrl}
               alt={anime.title}
               aspectRatio="2/3"
-              className="w-full h-full object-cover min-h-[260px] sm:min-h-[380px]"
+              className="w-full h-full object-cover object-top sm:object-center sm:min-h-[380px]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-transparent to-[#101411]/90 sm:to-[#101411] pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-[#101411] sm:from-transparent via-transparent to-transparent sm:to-[#101411] pointer-events-none" />
           </div>
 
           {/* Details Body */}
-          <div className="sm:w-7/12 p-6 sm:p-7 flex flex-col justify-between space-y-4">
+          <div className="p-4 sm:p-7 sm:w-7/12 flex flex-col justify-between space-y-4">
             <div>
               {/* Badges */}
               <div className="flex items-center gap-2 mb-2">
@@ -124,7 +124,7 @@ export const AnimeDetailModal: React.FC<AnimeDetailModalProps> = ({ anime, onClo
                   </p>
                 </div>
               ) : (
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col xs:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
                   <button
                     type="button"
                     onClick={() => setIsPlayingPreview(true)}

@@ -49,15 +49,15 @@ export const SimulcastsPage: React.FC<SimulcastsPageProps> = ({
             </div>
           </div>
 
-          {/* Weekly Day Selector Tabs */}
-          <div className="mt-8 flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-none pt-4 border-t border-[#262D28]/60">
+          {/* Weekly Day Selector Tabs with touch edge scrolling on mobile */}
+          <div className="mt-8 flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-none pt-4 border-t border-[#262D28]/60 -mx-4 px-4 sm:mx-0 sm:px-0">
             <Calendar className="w-4 h-4 text-[#A0AAA2] flex-shrink-0 mr-1" />
             {days.map((day) => (
               <button
                 key={day}
                 type="button"
                 onClick={() => setSelectedDay(day)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 flex-shrink-0 flex items-center gap-1.5 ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 flex-shrink-0 flex items-center gap-1.5 whitespace-nowrap ${
                   selectedDay === day
                     ? 'bg-[#39E66B] text-[#080A09] font-bold shadow-sm'
                     : 'bg-[#101411] text-[#A0AAA2] hover:text-[#F5F7F5] border border-[#262D28]'
@@ -76,7 +76,7 @@ export const SimulcastsPage: React.FC<SimulcastsPageProps> = ({
 
         {/* Simulcasts List */}
         {simulcastList.length === 0 ? (
-          <div className="bg-[#101411] border border-[#262D28] rounded-xl p-12 text-center">
+          <div className="bg-[#101411] border border-[#262D28] rounded-xl p-8 sm:p-12 text-center">
             <p className="text-[#A0AAA2]">No broadcast releases scheduled for {selectedDay}.</p>
             <button
               onClick={() => setSelectedDay('All Days')}
@@ -86,7 +86,7 @@ export const SimulcastsPage: React.FC<SimulcastsPageProps> = ({
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5 sm:gap-5">
             {simulcastList.map((anime) => (
               <div
                 key={anime.id}
@@ -103,7 +103,7 @@ export const SimulcastsPage: React.FC<SimulcastsPageProps> = ({
                 className="group flex bg-[#101411] border border-[#262D28] hover:border-[#39E66B]/50 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-[#39E66B]/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#39E66B]"
               >
                 {/* Left Thumbnail (2:3 aspect ratio) */}
-                <div className="w-28 sm:w-32 flex-shrink-0 relative bg-[#151A16]">
+                <div className="w-24 xs:w-28 sm:w-32 flex-shrink-0 relative bg-[#151A16]">
                   <AnimeImage
                     src={anime.posterUrl}
                     alt={anime.title}

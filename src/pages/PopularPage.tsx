@@ -68,15 +68,15 @@ export const PopularPage: React.FC<PopularPageProps> = ({
 
           {/* Filter and Sort Toolbar */}
           <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-6 border-t border-[#262D28]/60">
-            {/* Genre Pills */}
-            <div className="flex items-center space-x-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
+            {/* Genre Pills with edge-to-edge scroll on mobile */}
+            <div className="flex items-center space-x-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
               <Filter className="w-3.5 h-3.5 text-[#A0AAA2] flex-shrink-0 mr-1" />
               {genres.map((g) => (
                 <button
                   key={g}
                   type="button"
                   onClick={() => setSelectedGenre(g)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex-shrink-0 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex-shrink-0 whitespace-nowrap ${
                     selectedGenre === g
                       ? 'bg-[#39E66B] text-[#080A09] font-bold shadow-xs'
                       : 'bg-[#101411] text-[#A0AAA2] hover:text-[#F5F7F5] border border-[#262D28]'
@@ -88,7 +88,7 @@ export const PopularPage: React.FC<PopularPageProps> = ({
             </div>
 
             {/* Sort Selector */}
-            <div className="flex items-center space-x-2 text-xs text-[#A0AAA2] self-end sm:self-auto">
+            <div className="flex items-center space-x-2 text-xs text-[#A0AAA2] self-end sm:self-auto flex-shrink-0">
               <span>Sort by:</span>
               <select
                 value={sortBy}
@@ -103,8 +103,8 @@ export const PopularPage: React.FC<PopularPageProps> = ({
           </div>
         </div>
 
-        {/* Popular Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+        {/* Popular Grid (Responsive 2 cols on mobile, 3 on tablet, 4 on small desktop, 5-6 on wide screens) */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
           {popularList.map((anime, idx) => {
             const rank = anime.popularRank || idx + 1;
 

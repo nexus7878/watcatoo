@@ -80,7 +80,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <span>You’re subscribed! Simulcast broadcast alerts enabled.</span>
               </div>
             ) : (
-              <form onSubmit={handleNewsletterSubmit} className="flex items-center gap-2 max-w-md w-full">
+              <form onSubmit={handleNewsletterSubmit} className="flex flex-col xs:flex-row items-stretch sm:items-center gap-2 max-w-md w-full">
                 <div className="relative flex-1">
                   <Mail className="w-4 h-4 text-[#A0AAA2] absolute left-3 top-1/2 -translate-y-1/2" />
                   <input
@@ -94,7 +94,7 @@ export const Footer: React.FC<FooterProps> = ({
                 </div>
                 <button
                   type="submit"
-                  className="px-4 py-2.5 bg-[#39E66B] hover:bg-[#20C45A] text-[#080A09] font-bold text-xs rounded-md transition-colors flex items-center space-x-1 flex-shrink-0"
+                  className="px-4 py-2.5 bg-[#39E66B] hover:bg-[#20C45A] text-[#080A09] font-bold text-xs rounded-md transition-colors flex items-center justify-center space-x-1 flex-shrink-0"
                 >
                   <span>Subscribe</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -104,10 +104,10 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* 4-Column Links Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-14">
+        {/* Responsive Links Grid */}
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-14">
           {/* Brand Info */}
-          <div className="col-span-2 space-y-4">
+          <div className="col-span-1 xs:col-span-2 space-y-4">
             <a
               href="#top"
               onClick={(e) => {

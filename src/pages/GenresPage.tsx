@@ -52,8 +52,8 @@ export const GenresPage: React.FC<GenresPageProps> = ({
             </div>
           </div>
 
-          {/* Genre Tabs Bar */}
-          <div className="mt-8 flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-none pt-4 border-t border-[#262D28]/60">
+          {/* Genre Tabs Bar with edge-to-edge scroll on mobile */}
+          <div className="mt-8 flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-none pt-4 border-t border-[#262D28]/60 -mx-4 px-4 sm:mx-0 sm:px-0">
             {allGenresList.map((g) => {
               const isSelected = activeGenre === g;
               const count = g === 'All' ? animeList.length : animeList.filter((a) => a.genres.some((genre) => genre.toLowerCase() === g.toLowerCase())).length;
@@ -63,7 +63,7 @@ export const GenresPage: React.FC<GenresPageProps> = ({
                   key={g}
                   type="button"
                   onClick={() => setActiveGenre(g)}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 flex-shrink-0 ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 flex-shrink-0 whitespace-nowrap ${
                     isSelected
                       ? 'bg-[#39E66B] text-[#080A09] font-bold shadow-sm'
                       : 'bg-[#101411] text-[#A0AAA2] hover:text-[#F5F7F5] border border-[#262D28]'
@@ -81,7 +81,7 @@ export const GenresPage: React.FC<GenresPageProps> = ({
 
         {/* Selected Genre Banner (if specific category selected) */}
         {activeGenreMeta && (
-          <div className="relative mb-10 rounded-2xl overflow-hidden border border-[#262D28] p-6 sm:p-8 bg-[#101411]">
+          <div className="relative mb-8 sm:mb-10 rounded-2xl overflow-hidden border border-[#262D28] p-5 sm:p-8 bg-[#101411]">
             <div className="absolute inset-0 z-0 opacity-25">
               <img
                 src={activeGenreMeta.bgImage}
@@ -95,7 +95,7 @@ export const GenresPage: React.FC<GenresPageProps> = ({
               <span className="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-[#39E66B]/15 text-[#39E66B] border border-[#39E66B]/30 mb-2 inline-block">
                 Featured Corridor
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F5F7F5]">
+              <h2 className="text-xl sm:text-3xl font-extrabold text-[#F5F7F5]">
                 {activeGenreMeta.name} Anime
               </h2>
               <p className="mt-2 text-xs sm:text-sm text-[#A0AAA2] leading-relaxed">
@@ -105,8 +105,8 @@ export const GenresPage: React.FC<GenresPageProps> = ({
           </div>
         )}
 
-        {/* Filtered Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+        {/* Filtered Grid (2 cols on phone, 3 on tablet, 4 on desktop, 5-6 on wide screens) */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
           {filteredList.map((anime) => (
             <div
               key={anime.id}

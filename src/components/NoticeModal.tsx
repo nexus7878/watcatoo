@@ -34,7 +34,7 @@ export const NoticeModal: React.FC<NoticeModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-md bg-[#101411] border border-[#262D28] rounded-xl shadow-2xl p-6 sm:p-7 overflow-hidden"
+        className="relative w-full max-w-md max-h-[90vh] overflow-y-auto bg-[#101411] border border-[#262D28] rounded-xl shadow-2xl p-5 sm:p-7"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}

@@ -82,7 +82,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
           {/* Headline - Primary focus */}
           <div className="space-y-3">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-[#F5F7F5] leading-[1.08] font-sans">
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-[#F5F7F5] leading-[1.1] font-sans">
               Your Next Anime <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5F7F5] via-[#F5F7F5] to-[#39E66B]">
                 Obsession.
@@ -90,19 +90,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </h1>
 
             {/* Supporting Text */}
-            <p className="text-base sm:text-lg md:text-xl text-[#A0AAA2] font-normal leading-relaxed max-w-xl">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#A0AAA2] font-normal leading-relaxed max-w-xl">
               Discover unforgettable worlds, legendary adventures, and stories that stay with you.
             </p>
           </div>
 
           {/* Metadata Row */}
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs sm:text-sm text-[#A0AAA2]">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-[#A0AAA2]">
             {/* Genre pills */}
-            <div className="flex items-center gap-1.5">
+            <div className="flex flex-wrap items-center gap-1.5">
               {current.genres.map((g) => (
                 <span
                   key={g}
-                  className="px-2.5 py-0.5 rounded bg-[#151A16] border border-[#262D28] text-[#F5F7F5] text-xs font-medium"
+                  className="px-2 sm:px-2.5 py-0.5 rounded bg-[#151A16] border border-[#262D28] text-[#F5F7F5] text-[11px] sm:text-xs font-medium"
                 >
                   {g}
                 </span>
@@ -111,16 +111,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             <span className="text-[#262D28] hidden sm:inline">•</span>
 
-            <span className="text-[#A0AAA2] font-medium">{current.year}</span>
+            <span className="text-[#A0AAA2] font-medium text-xs sm:text-sm">{current.year}</span>
 
             <span className="text-[#262D28]">•</span>
 
-            <span className="text-[#A0AAA2]">{current.episodes}</span>
+            <span className="text-[#A0AAA2] text-xs sm:text-sm">{current.episodes}</span>
 
             <span className="text-[#262D28] hidden sm:inline">•</span>
 
             {/* Audio / Quality badges */}
-            <div className="hidden sm:flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5">
               <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#262D28]/70 text-[#A0AAA2] border border-[#262D28]">
                 SUB / DUB
               </span>
@@ -161,19 +161,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </button>
           </div>
 
-          {/* Spotlight switcher tabs (restrained, modern pill controls) */}
-          <div className="pt-6 sm:pt-10 flex items-center space-x-2">
-            <span className="text-[11px] uppercase tracking-wider text-[#A0AAA2]/70 mr-2 font-medium">
-              Featured Spotlights:
+          {/* Spotlight switcher tabs (responsive with touch edge scroll on mobile) */}
+          <div className="pt-4 sm:pt-8 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
+            <span className="text-[11px] uppercase tracking-wider text-[#A0AAA2]/70 mr-1 font-semibold flex-shrink-0">
+              Spotlights:
             </span>
             {heroList.map((hero, idx) => (
               <button
                 key={hero.id}
                 onClick={() => setActiveHeroIdx(idx)}
-                className={`group relative py-1 px-2.5 rounded-full text-xs transition-all duration-200 flex items-center gap-1.5 ${
+                className={`group relative py-1 px-3 rounded-full text-xs transition-all duration-200 flex items-center gap-1.5 flex-shrink-0 whitespace-nowrap ${
                   activeHeroIdx === idx
                     ? 'bg-[#151A16] text-[#39E66B] border border-[#39E66B]/40 font-semibold'
-                    : 'text-[#A0AAA2] hover:text-[#F5F7F5] hover:bg-[#101411] border border-transparent'
+                    : 'text-[#A0AAA2] hover:text-[#F5F7F5] hover:bg-[#101411] border border-[#262D28]'
                 }`}
                 aria-label={`View ${hero.title}`}
               >
@@ -182,7 +182,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     activeHeroIdx === idx ? 'bg-[#39E66B]' : 'bg-[#262D28] group-hover:bg-[#A0AAA2]'
                   }`}
                 />
-                <span className="truncate max-w-[120px] sm:max-w-[160px]">{hero.title}</span>
+                <span className="truncate max-w-[140px] sm:max-w-[180px]">{hero.title}</span>
               </button>
             ))}
           </div>
