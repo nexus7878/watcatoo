@@ -5,7 +5,7 @@ interface FooterProps {
   onOpenNotice: (title: string, content: string) => void;
   onExploreAnime: () => void;
   onDiscoverGenres: () => void;
-  onNavigate?: (page: 'home' | 'popular' | 'simulcasts' | 'genres', genre?: string) => void;
+  onNavigate?: (page: 'home' | 'popular' | 'simulcasts' | 'genres' | 'manga', genre?: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -162,6 +162,16 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#39E66B] transition-colors focus:outline-none text-left"
                 >
                   Curated Genres
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onNavigate && onNavigate('manga')}
+                  className="hover:text-[#39E66B] transition-colors focus:outline-none text-left flex items-center gap-1.5"
+                >
+                  <span>Manga Addict</span>
+                  <span className="text-[10px] font-mono font-semibold px-1 py-0.2 bg-[#39E66B]/15 text-[#39E66B] rounded">NEW</span>
                 </button>
               </li>
               <li>

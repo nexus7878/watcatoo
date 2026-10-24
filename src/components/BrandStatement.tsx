@@ -41,13 +41,13 @@ export const BrandStatement: React.FC = () => {
   ];
 
   return (
-    <section id="story" className="py-24 md:py-32 bg-[#080A09] relative overflow-hidden border-t border-[#262D28]">
+    <section id="story" className="py-12 sm:py-20 md:py-32 bg-[#080A09] relative overflow-hidden border-t border-[#262D28] w-full max-w-full">
       {/* Cinematic ambient background glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#39E66B]/5 rounded-full blur-[140px] pointer-events-none animate-glow-breathe" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] bg-[#39E66B]/5 rounded-full blur-[100px] pointer-events-none animate-glow-breathe" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full max-w-full">
         {/* Editorial Top Headline Section */}
-        <div className="text-center max-w-4xl mx-auto mb-16 md:mb-20 space-y-6">
+        <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-14 md:mb-20 space-y-4 sm:space-y-6">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#101411] border border-[#262D28] text-xs font-semibold text-[#39E66B] shadow-sm">
             <Sparkles className="w-3.5 h-3.5 animate-pulse" />
             <span className="uppercase tracking-widest text-[11px]">The WATCatoo Vision</span>

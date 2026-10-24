@@ -625,5 +625,209 @@ export const ALL_ANIME_COLLECTION: AnimeItem[] = [
     studio: 'TMS Entertainment',
     ratingLabel: 'TV-14',
     synopsis: 'A debt-ridden gamer stumbles onto a legendary class change quest in the virtual reality realm Satisfy.'
+  },
+  {
+    id: 'overlord',
+    title: 'Overlord',
+    season: 'Season 4',
+    posterUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/display/keyart/T00002367-base_asset_2x3-en-US',
+    genres: ['Fantasy', 'Action', 'Isekai'],
+    year: '2024',
+    episodes: '52 Episodes',
+    isTrending: false,
+    isPopular: true,
+    popularRank: 20,
+    studio: 'Madhouse',
+    ratingLabel: 'TV-MA',
+    synopsis: 'When his favorite MMORPG shuts down, veteran player Momonga stays logged in until the final second and finds himself transported to a new realm as his supreme skeletal avatar, commanding the monstrous Great Tomb of Nazarick.'
+  },
+  {
+    id: 'konosuba',
+    title: 'KonoSuba: God\'s Blessing on this Wonderful World!',
+    season: 'Season 3',
+    posterUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/display/keyart/T00002167-base_asset_2x3-en-US',
+    genres: ['Comedy', 'Fantasy', 'Adventure', 'Isekai'],
+    year: '2024',
+    episodes: '33 Episodes',
+    isTrending: true,
+    isPopular: true,
+    popularRank: 21,
+    studio: 'Drive / Studio Deen',
+    ratingLabel: 'TV-14',
+    synopsis: 'After dying an absurd and comical death, shut-in Kazuma Satou is granted one wish by the haughty goddess Aqua before reincarnating — and maliciously chooses to drag the useless goddess along with him.'
   }
 ];
+
+export interface ReincarnatedAnime {
+  id: string;
+  title: string;
+  originalTitle: string;
+  tagline: string;
+  posterUrl: string;
+  bannerUrl: string;
+  rating: string;
+  ratingLabel: string;
+  year: string;
+  episodes: string;
+  studio: string;
+  category: 'magic' | 'kingdom' | 'survival' | 'gaming';
+  categoryLabel: string;
+  synopsis: string;
+  rebornIdentity: string;
+  cheatPower: string;
+  featured?: boolean;
+}
+
+export const REINCARNATION_CODEX: ReincarnatedAnime[] = [
+  {
+    id: 'mushoku-tensei',
+    title: 'Mushoku Tensei: Jobless Reincarnation',
+    originalTitle: '無職転生 ～異世界行ったら本気だす～',
+    tagline: 'A Second Life Without Regrets in a Realm of Magic',
+    posterUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/display/keyart/T00102634-base_asset_2x3-en-US',
+    bannerUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/display/keyart/T00102634-base_asset_16x9-en-US',
+    rating: '9.2',
+    ratingLabel: 'TV-MA',
+    year: '2024',
+    episodes: '48 Episodes',
+    studio: 'Studio Bind',
+    category: 'magic',
+    categoryLabel: 'Magic Prodigy',
+    rebornIdentity: 'Rudeus Greyrat',
+    cheatPower: 'Voiceless Incantation & Boundless Mana Reservoir',
+    synopsis: 'When a 34-year-old recluse is killed in a traffic collision, he wakes as an infant in an enchanted medieval realm. Retaining his memories and adult intellect, Rudeus masters chantless elemental spellcraft, embarking on a genuine journey of redemption and lifelong growth.',
+    featured: true,
+  },
+  {
+    id: 'slime-s4',
+    title: 'That Time I Got Reincarnated as a Slime',
+    originalTitle: '転生したらスライムだった件',
+    tagline: 'From Gelatinous Predator to Sovereign Demon Lord',
+    posterUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/display/keyart/T00050707-base_asset_2x3-en-US',
+    bannerUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/That%20Time%20I%20Got%20Reincarnated%20as%20a%20Slime/SEASON%204/ULTRA-WIDE/ThatTimeIGotReincarnatedAsASlime-S4-Character-UW-LTR.png',
+    rating: '9.0',
+    ratingLabel: 'TV-14',
+    year: '2024',
+    episodes: '72 Episodes',
+    studio: 'Eight Bit',
+    category: 'kingdom',
+    categoryLabel: 'Empire Builder',
+    rebornIdentity: 'Rimuru Tempest',
+    cheatPower: 'Predator Absorption & Autonomous Great Sage',
+    synopsis: 'Fatally stabbed while protecting a colleague in Tokyo, corporate worker Satoru Mikami reawakens in a fantasy cavern as a blind slime monster. Using his ability to absorb skills and consume foes, he forms a dragon pact and builds a thriving multi-species federation.',
+    featured: true,
+  },
+  {
+    id: 'overlord',
+    title: 'Overlord',
+    originalTitle: 'オーバーロード',
+    tagline: 'When the Server Closed, His Conquest Began',
+    posterUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/display/keyart/T00002367-base_asset_2x3-en-US',
+    bannerUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/display/keyart/T00002367-base_asset_16x9-en-US',
+    rating: '8.8',
+    ratingLabel: 'TV-MA',
+    year: '2024',
+    episodes: '52 Episodes',
+    studio: 'Madhouse',
+    category: 'kingdom',
+    categoryLabel: 'Supreme Ruler',
+    rebornIdentity: 'Ainz Ooal Gown',
+    cheatPower: 'Super-Tier Magic & Sentient Floor Guardians',
+    synopsis: 'As the virtual reality game YGGDRASIL terminates service, veteran player Momonga stays online until the final countdown — only to discover the entire guild fortress of Nazarick has materialized into a living, uncharted fantasy continent.',
+    featured: true,
+  },
+  {
+    id: 're-zero',
+    title: 'Re:ZERO -Starting Life in Another World-',
+    originalTitle: 'Re:ゼロから始める異世界生活',
+    tagline: 'Cursed With An Agonizing Second Chance at Life',
+    posterUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/display/keyart/T00002559-base_asset_2x3-en-US',
+    bannerUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/display/keyart/T00002559-base_asset_16x9-en-US',
+    rating: '8.9',
+    ratingLabel: 'TV-MA',
+    year: '2024',
+    episodes: '50 Episodes',
+    studio: 'White Fox',
+    category: 'survival',
+    categoryLabel: 'Psychological Reset',
+    rebornIdentity: 'Subaru Natsuki',
+    cheatPower: 'Return by Death Time Rewind',
+    synopsis: 'Abruptly summoned to an unfamiliar royal kingdom without magic or weapons, high schooler Subaru Natsuki discovers he possesses only one horrifying capability: each time he suffers a gruesome death, time resets back to an arbitrary checkpoint.',
+    featured: true,
+  },
+  {
+    id: 'konosuba',
+    title: 'KonoSuba: God\'s Blessing on this Wonderful World!',
+    originalTitle: 'この素晴らしい世界に祝福を！',
+    tagline: 'The Most Dysfunctionally Glorious Party in Any Realm',
+    posterUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/display/keyart/T00002167-base_asset_2x3-en-US',
+    bannerUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/display/keyart/T00002167-base_asset_16x9-en-US',
+    rating: '9.0',
+    ratingLabel: 'TV-14',
+    year: '2024',
+    episodes: '33 Episodes',
+    studio: 'Drive / Studio Deen',
+    category: 'magic',
+    categoryLabel: 'Fantasy Comedy',
+    rebornIdentity: 'Kazuma Satou',
+    cheatPower: 'Max Luck Stat & Spiteful Resourcefulness',
+    synopsis: 'After dying an absurdly embarrassing death, shut-in Kazuma is presented with a choice to reincarnate by a conceited goddess named Aqua. Spitefully choosing the goddess herself as his starter relic, he lands in a frontier town saddled with debts and chaotic teammates.',
+    featured: true,
+  },
+  {
+    id: 'solo-leveling',
+    title: 'Solo Leveling',
+    originalTitle: '나 혼자만 레벨업',
+    tagline: 'The Weakest Hunter Reborn as the Shadow Monarch',
+    posterUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/display/keyart/T00320667-base_asset_2x3-en-US',
+    bannerUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/display/keyart/T00320667-base_asset_16x9-en-US',
+    rating: '9.3',
+    ratingLabel: 'TV-MA',
+    year: '2024',
+    episodes: '12 Episodes',
+    studio: 'A-1 Pictures',
+    category: 'survival',
+    categoryLabel: 'System Player',
+    rebornIdentity: 'Sung Jinwoo',
+    cheatPower: 'Private Quest Log & Shadow Extraction',
+    synopsis: 'Brutally sacrificed within a hidden dual dungeon temple, the world’s weakest hunter accepts a mysterious interface prompt at his final breath, awakening as the only human capable of infinite, unrestricted progression.',
+  },
+  {
+    id: 'wild-last-boss',
+    title: 'A Wild Last Boss Appeared!',
+    originalTitle: '野生のラスボスが現れた！',
+    tagline: 'Reborn in the Body of their Feared Raid Boss Avatar',
+    posterUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/display/keyart/T00361955-base_asset_2x3-en-US',
+    bannerUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/display/keyart/T00361955-base_asset_16x9-en-US',
+    rating: '8.7',
+    ratingLabel: 'TV-14',
+    year: '2025',
+    episodes: 'Simulcast Active',
+    studio: 'Earth Star Entertainment',
+    category: 'gaming',
+    categoryLabel: 'MMO Raid Boss',
+    rebornIdentity: 'Lufas Maphaahl',
+    cheatPower: 'Level 1000 Overlord Physique',
+    synopsis: 'An MMO tactician awakens inside the physical form of their feared winged conqueror avatar Lufas, uncovering a transformed fantasy realm two centuries after their legendary reign.',
+  },
+  {
+    id: 'secret-saint',
+    title: 'A Tale of the Secret Saint',
+    originalTitle: '転生少女の履歴書',
+    tagline: 'A Holy Reincarnation Hidden Behind a Knight’s Shield',
+    posterUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/display/keyart/T00371633-base_asset_2x3-en-US',
+    bannerUrl: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/display/keyart/T00371633-base_asset_16x9-en-US',
+    rating: '8.5',
+    ratingLabel: 'TV-14',
+    year: '2025',
+    episodes: 'Simulcast Active',
+    studio: 'Black Dragon Knights',
+    category: 'magic',
+    categoryLabel: 'Saintess in Disguise',
+    rebornIdentity: 'Knight Fia',
+    cheatPower: 'Lost Celestial Restoration Miracles',
+    synopsis: 'Blessed with divine healing miracles that could overturn empires, a reincarnated knight conceals her saintly power to avoid court intrigue while defending the royal frontier.',
+  }
+];
+
+

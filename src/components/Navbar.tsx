@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Menu, X, Flame, Layers, User, Radio } from 'lucide-react';
+import { Search, Menu, X, Flame, Layers, User, Radio, BookOpen, LogOut } from 'lucide-react';
+import { AuthUser } from './AuthModal';
 
-export type NavPage = 'home' | 'popular' | 'simulcasts' | 'genres';
+export type NavPage = 'home' | 'popular' | 'simulcasts' | 'genres' | 'manga';
 
 interface NavbarProps {
   currentPage: NavPage;
   onNavigate: (page: NavPage) => void;
   onOpenSearch: () => void;
   onOpenSignIn: () => void;
+  currentUser?: AuthUser | null;
+  onSignOut?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -15,6 +18,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onNavigate,
   onOpenSearch,
   onOpenSignIn,
+  currentUser,
+  onSignOut,
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -37,6 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'popular', label: 'Popular', icon: <Flame className="w-3.5 h-3.5 text-[#39E66B]" />, isHot: true },
     { id: 'simulcasts', label: 'Simulcast', icon: <Radio className="w-3.5 h-3.5 text-[#39E66B]" /> },
     { id: 'genres', label: 'Genres', icon: <Layers className="w-3.5 h-3.5 text-[#39E66B]" /> },
+    { id: 'manga', label: 'Manga', icon: <BookOpen className="w-3.5 h-3.5 text-[#39E66B]" /> },
   ];
 
   const hints = [
@@ -51,7 +57,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setHintIndex((prev) => (prev + 1) % hints.length);
+      setHintIndex((prev: number) => (prev + 1) % hints.length);
     }, 3200);
     return () => clearInterval(timer);
   }, [hints.length]);
@@ -59,13 +65,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-40 w-full max-w-full transition-all duration-300 ${
           scrolled
             ? 'bg-[#080A09]/95 backdrop-blur-md border-b border-[#262D28] py-3 shadow-lg shadow-black/50'
             : 'bg-[#080A09]/90 sm:bg-gradient-to-b sm:from-[#080A09]/90 sm:via-[#080A09]/60 sm:to-transparent backdrop-blur-md sm:backdrop-blur-none border-b border-[#262D28]/60 sm:border-transparent py-3 sm:py-5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full max-w-full">
           <div className="flex items-center justify-between">
             {/* Left: Brand Wordmark & Nav */}
             <div className="flex items-center space-x-6 lg:space-x-9">
@@ -133,15 +139,41 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
               </button>
 
-              {/* Sign In Button (Desktop) */}
-              <button
-                type="button"
-                onClick={onOpenSignIn}
-                className="hidden sm:inline-flex items-center space-x-1.5 px-4 py-1.5 text-sm font-medium text-[#080A09] bg-[#39E66B] hover:bg-[#20C45A] active:scale-[0.98] rounded-md transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#39E66B] focus-visible:ring-offset-[#080A09]"
-              >
-                <User className="w-4 h-4" />
-                <span>Sign In</span>
-              </button>
+              {/* User Profile or Sign In Button (Desktop) */}
+              {currentUser ? (
+                <div className="hidden sm:inline-flex items-center space-x-2 pl-3 pr-2 py-1 bg-[#101411] border border-[#39E66B]/30 rounded-full text-xs">
+                  <div className="w-6 h-6 rounded-full bg-[#39E66B] text-[#080A09] font-bold flex items-center justify-center text-[11px]">
+                    {currentUser.name.charAt(0).toUpperCase()}
+                  </div>
+                  <span className="font-semibold text-[#F5F7F5] max-w-[100px] truncate">
+                    {currentUser.name}
+                  </span>
+                  {currentUser.isVip && (
+                    <span className="px-1.5 py-0.2 rounded bg-[#39E66B]/20 text-[#39E66B] font-mono text-[9px] font-bold">
+                      VIP
+                    </span>
+                  )}
+                  {onSignOut && (
+                    <button
+                      type="button"
+                      onClick={onSignOut}
+                      title="Sign Out"
+                      className="p-1 text-[#A0AAA2] hover:text-[#FF6B6B] transition-colors rounded-full"
+                    >
+                      <LogOut className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={onOpenSignIn}
+                  className="hidden sm:inline-flex items-center space-x-1.5 px-4 py-1.5 text-sm font-medium text-[#080A09] bg-[#39E66B] hover:bg-[#20C45A] active:scale-[0.98] rounded-md transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#39E66B] focus-visible:ring-offset-[#080A09]"
+                >
+                  <User className="w-4 h-4" />
+                  <span>Sign In</span>
+                </button>
+              )}
 
               {/* Mobile menu toggle: perfectly matched in height, width, border radius & styling */}
               <button
@@ -183,16 +215,42 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
 
             <div className="pt-2 border-t border-[#262D28]">
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenSignIn();
-                }}
-                className="w-full py-2.5 px-4 text-center text-sm font-semibold text-[#080A09] bg-[#39E66B] hover:bg-[#20C45A] rounded-md transition-colors"
-              >
-                Sign In to WATCatoo
-              </button>
+              {currentUser ? (
+                <div className="flex items-center justify-between p-2.5 bg-[#101411] rounded-lg border border-[#262D28]">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-full bg-[#39E66B] text-[#080A09] font-bold flex items-center justify-center text-xs">
+                      {currentUser.name.charAt(0).toUpperCase()}
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-[#F5F7F5] block">{currentUser.name}</span>
+                      <span className="text-[10px] text-[#A0AAA2]">{currentUser.email}</span>
+                    </div>
+                  </div>
+                  {onSignOut && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        onSignOut();
+                      }}
+                      className="text-xs text-[#FF6B6B] hover:underline"
+                    >
+                      Sign Out
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenSignIn();
+                  }}
+                  className="w-full py-2.5 px-4 text-center text-sm font-semibold text-[#080A09] bg-[#39E66B] hover:bg-[#20C45A] rounded-md transition-colors"
+                >
+                  Sign In to WATCatoo
+                </button>
+              )}
             </div>
           </div>
         )}

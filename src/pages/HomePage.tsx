@@ -1,7 +1,7 @@
 import React from 'react';
 import { HeroSection } from '../components/HeroSection';
 import { TrendingSection } from '../components/TrendingSection';
-import { GenreSection } from '../components/GenreSection';
+import { MangaAddictSection } from '../components/MangaAddictSection';
 import { BrandStatement } from '../components/BrandStatement';
 import { FinalCta } from '../components/FinalCta';
 import { AnimeItem } from '../data/animeData';
@@ -14,7 +14,10 @@ interface HomePageProps {
   onSelectAnimeById: (id: string) => void;
   onNavigateToPopular: () => void;
   onNavigateToGenres: () => void;
+  onNavigateToManga?: () => void;
   onOpenSignIn: () => void;
+  isLoggedIn?: boolean;
+  onRequireAuth?: (message: string, onSuccess?: () => void) => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({
@@ -25,7 +28,10 @@ export const HomePage: React.FC<HomePageProps> = ({
   onSelectAnimeById,
   onNavigateToPopular,
   onNavigateToGenres,
+  onNavigateToManga,
   onOpenSignIn,
+  isLoggedIn,
+  onRequireAuth,
 }) => {
   const handleExploreAnime = () => {
     onSelectGenre(null);
@@ -52,14 +58,11 @@ export const HomePage: React.FC<HomePageProps> = ({
         onSelectAnime={onSelectAnime}
       />
 
-      {/* Discover by Genre Showcase */}
-      <GenreSection
-        activeGenre={activeGenre}
-        onSelectGenre={(g) => {
-          onSelectGenre(g);
-          const el = document.getElementById('trending');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }}
+      {/* Manga Addict Showcase */}
+      <MangaAddictSection
+        onNavigateToManga={onNavigateToManga}
+        isLoggedIn={isLoggedIn}
+        onRequireAuth={onRequireAuth}
       />
 
       {/* Brand Statement / Vision */}

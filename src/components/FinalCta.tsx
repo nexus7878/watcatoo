@@ -23,9 +23,9 @@ export const FinalCta: React.FC<FinalCtaProps> = ({ onExploreAnime, onOpenSignIn
   const currentDevice = devices.find((d) => d.id === activeDevice) || devices[0];
 
   return (
-    <section className="py-24 md:py-32 bg-[#080A09] relative overflow-hidden border-t border-[#262D28]">
+    <section className="py-12 sm:py-20 md:py-32 bg-[#080A09] relative overflow-hidden border-t border-[#262D28] w-full max-w-full">
       {/* Background Infinite Moving Anime Poster Marquee */}
-      <div className="absolute inset-0 z-0 overflow-hidden opacity-20 pointer-events-none flex items-center">
+      <div className="absolute inset-0 z-0 overflow-hidden opacity-20 pointer-events-none flex items-center w-full max-w-full">
         <div className="animate-marquee flex space-x-4">
           {marqueeList.map((anime, idx) => (
             <div
@@ -49,7 +49,7 @@ export const FinalCta: React.FC<FinalCtaProps> = ({ onExploreAnime, onOpenSignIn
         <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#080A09]/70 to-[#080A09]" />
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full max-w-full">
         {/* Badge */}
         <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#101411]/90 border border-[#262D28] text-xs font-semibold text-[#39E66B] mb-6 backdrop-blur-sm shadow-md">
           <Sparkles className="w-3.5 h-3.5 animate-pulse" />

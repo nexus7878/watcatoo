@@ -33,10 +33,10 @@ export const TrendingSection: React.FC<TrendingSectionProps> = ({
     : animeList;
 
   return (
-    <section id="trending" className="py-16 md:py-24 bg-[#080A09] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="trending" className="py-10 sm:py-16 md:py-24 bg-[#080A09] relative overflow-hidden w-full max-w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full max-w-full">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-5 sm:mb-8 gap-3 sm:gap-4">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1.5 h-4 bg-[#39E66B] rounded-full inline-block" />
@@ -101,7 +101,7 @@ export const TrendingSection: React.FC<TrendingSectionProps> = ({
         ) : (
           <div
             ref={scrollContainerRef}
-            className="flex space-x-3.5 sm:space-x-5 overflow-x-auto pb-4 pt-2 scrollbar-none snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0"
+            className="flex space-x-3.5 sm:space-x-5 overflow-x-auto pb-4 pt-2 scrollbar-none snap-x snap-mandatory w-full max-w-full"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             tabIndex={0}
             aria-label="Trending anime list"

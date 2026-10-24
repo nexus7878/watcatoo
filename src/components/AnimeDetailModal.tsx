@@ -6,9 +6,16 @@ import { AnimeImage } from './AnimeImage';
 interface AnimeDetailModalProps {
   anime: AnimeItem | null;
   onClose: () => void;
+  isLoggedIn?: boolean;
+  onRequireAuth?: (message: string, onSuccess?: () => void) => void;
 }
 
-export const AnimeDetailModal: React.FC<AnimeDetailModalProps> = ({ anime, onClose }) => {
+export const AnimeDetailModal: React.FC<AnimeDetailModalProps> = ({
+  anime,
+  onClose,
+  isLoggedIn,
+  onRequireAuth,
+}) => {
   const [inWatchlist, setInWatchlist] = useState(false);
   const [isPlayingPreview, setIsPlayingPreview] = useState(false);
 
@@ -127,7 +134,15 @@ export const AnimeDetailModal: React.FC<AnimeDetailModalProps> = ({ anime, onClo
                 <div className="flex flex-col xs:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
                   <button
                     type="button"
-                    onClick={() => setIsPlayingPreview(true)}
+                    onClick={() => {
+                      if (!isLoggedIn && onRequireAuth) {
+                        onRequireAuth(`Sign in to watch the simulcast stream of ${anime.title}.`, () => {
+                          setIsPlayingPreview(true);
+                        });
+                        return;
+                      }
+                      setIsPlayingPreview(true);
+                    }}
                     className="flex-1 inline-flex items-center justify-center space-x-2 py-2.5 px-4 text-sm font-bold text-[#080A09] bg-[#39E66B] hover:bg-[#20C45A] rounded-md transition-colors shadow-sm"
                   >
                     <Play className="w-4 h-4 fill-current" />

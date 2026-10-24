@@ -4,10 +4,12 @@ import { HomePage } from './pages/HomePage';
 import { PopularPage } from './pages/PopularPage';
 import { SimulcastsPage } from './pages/SimulcastsPage';
 import { GenresPage } from './pages/GenresPage';
+import { MangaPage } from './pages/MangaPage';
 import { Footer } from './components/Footer';
 import { SearchModal } from './components/SearchModal';
 import { AnimeDetailModal } from './components/AnimeDetailModal';
 import { NoticeModal } from './components/NoticeModal';
+import { AuthModal, AuthUser } from './components/AuthModal';
 import { ALL_ANIME_COLLECTION, AnimeItem } from './data/animeData';
 
 export function App() {
@@ -16,6 +18,7 @@ export function App() {
     if (hash === 'popular') return 'popular';
     if (hash === 'simulcasts' || hash === 'simulcast') return 'simulcasts';
     if (hash === 'genres' || hash === 'genre') return 'genres';
+    if (hash === 'manga' || hash === 'mangas' || hash === 'comic' || hash === 'comics') return 'manga';
     return 'home';
   };
 
@@ -24,7 +27,27 @@ export function App() {
   const [selectedAnime, setSelectedAnime] = useState<AnimeItem | null>(null);
   const [activeGenre, setActiveGenre] = useState<string | null>(null);
 
-  // Notice Modal state for Sign In or Policies
+  // Authenticated user state stored in localStorage
+  const [currentUser, setCurrentUser] = useState<AuthUser | null>(() => {
+    try {
+      const stored = localStorage.getItem('watcatoo_user');
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
+
+  // Dedicated Auth Modal state with contextual prompt & success continuation
+  const [authModalState, setAuthModalState] = useState<{
+    isOpen: boolean;
+    promptTitle?: string;
+    promptMessage?: string;
+    onSuccessCallback?: () => void;
+  }>({
+    isOpen: false,
+  });
+
+  // Notice Modal state for Policies / Platform Info
   const [noticeModal, setNoticeModal] = useState<{
     isOpen: boolean;
     title: string;
@@ -74,14 +97,46 @@ export function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // Auth Handlers
   const handleOpenSignIn = () => {
-    setNoticeModal({
+    setAuthModalState({
       isOpen: true,
-      title: 'Sign In to WATCatoo',
-      content:
-        'Personal viewer profiles, synchronized watch histories, and simulcast notifications will launch in Phase 2 of our platform rollout. Enter your email below to reserve your founder handle and receive immediate VIP access when accounts go live.',
-      isSignIn: true,
+      promptTitle: undefined,
+      promptMessage: undefined,
+      onSuccessCallback: undefined,
     });
+  };
+
+  const handleRequireAuth = (promptMessage: string, onSuccess?: () => void) => {
+    setAuthModalState({
+      isOpen: true,
+      promptTitle: 'Sign In Required',
+      promptMessage,
+      onSuccessCallback: onSuccess,
+    });
+  };
+
+  const handleLoginSuccess = (user: AuthUser) => {
+    setCurrentUser(user);
+    try {
+      localStorage.setItem('watcatoo_user', JSON.stringify(user));
+    } catch {
+      // ignore storage errors
+    }
+    const cb = authModalState.onSuccessCallback;
+    setAuthModalState({ isOpen: false });
+    if (cb) {
+      setTimeout(() => cb(), 100);
+    }
+  };
+
+  const handleSignOut = () => {
+    setCurrentUser(null);
+    try {
+      localStorage.removeItem('watcatoo_user');
+    } catch {
+      // ignore
+    }
   };
 
   const handleOpenNotice = (title: string, content: string) => {
@@ -101,17 +156,19 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080A09] text-[#F5F7F5] selection:bg-[#39E66B]/25 selection:text-[#39E66B] flex flex-col">
+    <div className="min-h-screen bg-[#080A09] text-[#F5F7F5] selection:bg-[#39E66B]/25 selection:text-[#39E66B] flex flex-col w-full max-w-full overflow-x-hidden">
       {/* Navigation Bar */}
       <Navbar
         currentPage={currentPage}
         onNavigate={navigate}
         onOpenSearch={() => setSearchOpen(true)}
         onOpenSignIn={handleOpenSignIn}
+        currentUser={currentUser}
+        onSignOut={handleSignOut}
       />
 
       {/* Main Page Landmark */}
-      <main className="flex-1">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden">
         {currentPage === 'home' && (
           <HomePage
             animeList={ALL_ANIME_COLLECTION}
@@ -121,7 +178,10 @@ export function App() {
             onSelectAnimeById={handleSelectAnimeById}
             onNavigateToPopular={() => navigate('popular')}
             onNavigateToGenres={() => navigate('genres')}
+            onNavigateToManga={() => navigate('manga')}
             onOpenSignIn={handleOpenSignIn}
+            isLoggedIn={!!currentUser}
+            onRequireAuth={handleRequireAuth}
           />
         )}
 
@@ -146,6 +206,14 @@ export function App() {
             onSelectAnime={(anime) => setSelectedAnime(anime)}
           />
         )}
+
+        {currentPage === 'manga' && (
+          <MangaPage
+            onNavigateHome={() => navigate('home')}
+            isLoggedIn={!!currentUser}
+            onRequireAuth={handleRequireAuth}
+          />
+        )}
       </main>
 
       {/* Footer */}
@@ -167,8 +235,20 @@ export function App() {
       <AnimeDetailModal
         anime={selectedAnime}
         onClose={() => setSelectedAnime(null)}
+        isLoggedIn={!!currentUser}
+        onRequireAuth={handleRequireAuth}
       />
 
+      {/* Modern Authenticated User Modal */}
+      <AuthModal
+        isOpen={authModalState.isOpen}
+        onClose={() => setAuthModalState((prev) => ({ ...prev, isOpen: false }))}
+        onSuccess={handleLoginSuccess}
+        promptTitle={authModalState.promptTitle}
+        promptMessage={authModalState.promptMessage}
+      />
+
+      {/* Legal & Policies Notice Modal */}
       <NoticeModal
         isOpen={noticeModal.isOpen}
         onClose={() => setNoticeModal((prev) => ({ ...prev, isOpen: false }))}
