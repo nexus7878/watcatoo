@@ -151,3 +151,20 @@ input:focus-visible {
 .animate-eq-3 { animation: eq-bounce 1.4s ease-in-out infinite 0.4s; }
 .animate-eq-4 { animation: eq-bounce 1.0s ease-in-out infinite 0.1s; }
 
+/* Smooth slide and fade for search bar rotating placeholder */
+@keyframes hint-slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hint-slide {
+  animation: hint-slide-up 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+

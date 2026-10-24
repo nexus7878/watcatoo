@@ -62,6 +62,11 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => clearInterval(timer);
   }, [hints.length]);
 
+  const [isMac, setIsMac] = useState(false);
+  useEffect(() => {
+    setIsMac(/Mac|iPhone|iPod|iPad/i.test(navigator.userAgent || navigator.platform || ''));
+  }, []);
+
   return (
     <>
       <header
@@ -116,28 +121,44 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* Right: Search & Actions */}
             <div className="flex items-center space-x-2 sm:space-x-3">
-              {/* Matched Search Button: sleek icon button on mobile, expandable pill on desktop */}
-              <button
-                type="button"
-                onClick={onOpenSearch}
-                className="relative flex items-center h-9 sm:h-10 w-9 sm:w-56 md:w-64 lg:w-72 sm:px-3.5 bg-[#101411] hover:bg-[#151A16] border border-[#262D28] hover:border-[#39E66B]/40 rounded-lg sm:rounded-full transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#39E66B] justify-center sm:justify-between shadow-xs flex-shrink-0"
-                aria-label="Search anime"
-              >
-                {/* Search Icon & Desktop placeholder */}
-                <div className="flex items-center space-x-2.5 min-w-0">
-                  <Search className="w-4 h-4 text-[#A0AAA2] group-hover:text-[#39E66B] transition-colors flex-shrink-0" />
-                  <span className="hidden sm:inline-block text-xs font-normal text-[#A0AAA2] group-hover:text-[#F5F7F5] truncate transition-colors text-left">
-                    {hints[hintIndex]}
-                  </span>
-                </div>
+              {/* Ultra-sleek Glassmorphic Search Bar Button */}
+              <div className="relative group flex-shrink-0">
+                {/* Ambient dynamic emerald halo on hover */}
+                <div className="absolute -inset-[1px] rounded-full bg-gradient-to-r from-[#39E66B]/35 via-[#20C45A]/20 to-[#39E66B]/35 opacity-0 group-hover:opacity-100 blur-[6px] transition-all duration-300 pointer-events-none" />
 
-                {/* Right: Minimalist Keyboard Shortcut Chip (Desktop) */}
-                <div className="hidden sm:flex items-center pl-2">
-                  <span className="px-1.5 py-0.5 text-[10px] font-mono text-[#A0AAA2] group-hover:text-[#39E66B] bg-[#151A16] group-hover:bg-[#1A221D] border border-[#262D28] rounded transition-colors">
-                    ⌘K
-                  </span>
-                </div>
-              </button>
+                <button
+                  type="button"
+                  onClick={onOpenSearch}
+                  className="relative flex items-center h-10 w-10 sm:w-60 md:w-72 lg:w-80 px-0 sm:pl-3 sm:pr-2.5 bg-gradient-to-b from-[#141A16]/95 to-[#0B0F0C]/95 hover:from-[#1A241D]/95 hover:to-[#0F1612]/95 border border-[#27352B]/85 hover:border-[#39E66B]/60 rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#39E66B] justify-center sm:justify-between shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),0_4px_16px_rgba(0,0,0,0.5)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_0_20px_rgba(57,230,107,0.18)] cursor-pointer"
+                  aria-label="Search anime and manga"
+                >
+                  {/* Left: Icon Housing & Rolling Animated Placeholder */}
+                  <div className="flex items-center space-x-2.5 min-w-0 flex-1 justify-center sm:justify-start">
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center bg-[#18231C]/90 group-hover:bg-[#39E66B]/15 border border-[#2A372E]/60 group-hover:border-[#39E66B]/40 transition-all duration-200 flex-shrink-0">
+                      <Search className="w-3.5 h-3.5 text-[#8FA093] group-hover:text-[#39E66B] transition-all duration-200 group-hover:scale-105" />
+                    </div>
+
+                    <div className="hidden sm:block min-w-0 flex-1 overflow-hidden h-5 relative text-left">
+                      <span
+                        key={hintIndex}
+                        className="animate-hint-slide block text-[13px] font-normal text-[#8A968E] group-hover:text-[#E2E8E4] truncate transition-colors text-left leading-5"
+                      >
+                        {hints[hintIndex]}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Right: Tactile 3D Keycap Badge (Desktop) */}
+                  <div className="hidden sm:flex items-center pl-2 flex-shrink-0">
+                    <div className="inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-mono text-[#8A968E] group-hover:text-[#39E66B] bg-[#141D16] group-hover:bg-[#1A261D] border border-[#29372D] group-hover:border-[#39E66B]/40 rounded-[5px] shadow-[0_1px_2px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.06)] transition-all duration-200 select-none">
+                      <span className="font-sans font-semibold tracking-wide text-[9px] opacity-75">
+                        {isMac ? '⌘' : 'Ctrl'}
+                      </span>
+                      <span className="font-bold">K</span>
+                    </div>
+                  </div>
+                </button>
+              </div>
 
               {/* User Profile or Sign In Button (Desktop) */}
               {currentUser ? (
